@@ -30,6 +30,7 @@ def calculate_cost(sku_counts):
     for sku, count in sku_counts.items():
         if sku in offers:
             sku_price = items[sku]
+            offers[sku].sort(key=lambda x: x['count'], reverse=True)
             while count > 0:
                 offer_applied = False
                 for offer in offers[sku]:
@@ -53,4 +54,4 @@ def calculate_cost(sku_counts):
     
     return total_cost
 
-print(checkout('ABCD'))
+print(checkout('AAA'))
