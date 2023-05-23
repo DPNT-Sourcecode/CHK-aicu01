@@ -8,9 +8,12 @@ offers = {'A': {'count': 3, 'price': 130},
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    if not set(skus).issubset(items.keys()) or not skus:
+    if not set(skus).issubset(items.keys()):
         return -1
     
+    if not skus:
+        return 0
+
     total_cost = 0
 
     for item in items.keys():
@@ -25,6 +28,7 @@ def checkout(skus):
     
 
     
+
 
 
 
