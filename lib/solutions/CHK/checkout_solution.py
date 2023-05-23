@@ -32,6 +32,10 @@ def calculate_cost(sku_counts):
         free_count = sku_counts['E'] // 2
         sku_counts['B'] = max(sku_counts['B'] - free_count, 0)
 
+    if 'F' in sku_counts:
+        free_count = sku_counts['F'] // 2
+        sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
+
     for sku, count in sku_counts.items():
         if sku in offers:
             sku_price = items[sku]
@@ -39,19 +43,16 @@ def calculate_cost(sku_counts):
             while count > 0:
                 offer_applied = False
                 for offer in offers[sku]:
-                    offer_cost, remaining_count, free_sku = apply_offer(count, offer)
-                    total_cost += offer_cost
-                    if free_sku and free_sku in sku_counts:
-                        free_count = min(remaining_count, sku_counts[free_sku])
-                        remaining_count -= free_count
-                        sku_counts[free_sku] -= free_count
-                    count = remaining_count
-                    offer_applied = offer_cost > 0
-                    if offer_applied:
+                    offer_count = offer['count']
+                    offer_price = offer['price']
+                    if count >= offer_count:
+                        total_cost += offer_price
+                        count -= offer_count
+                        offer_applied = True
                         break
                 if not offer_applied:
                     total_cost += count * sku_price
-                    
+                    count = 0
         else:
             total_cost += count * items[sku]
 
@@ -60,17 +61,4 @@ def calculate_cost(sku_counts):
     
     return total_cost
 
-
-def apply_offer(count, offer):
-    offer_count = offer.get('count', float('inf'))
-    offer_price = offer.get('price', 0)
-    free_sku = offer.get('free')
-    if count >= offer_count:
-        free_count = count // offer_count
-        remaining_count = count % offer_count
-        return (offer_price * free_count, remaining_count, free_sku)
-    return (0, count, free_sku)
-
-
-print(checkout('FFF'))
 
