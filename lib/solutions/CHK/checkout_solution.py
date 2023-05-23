@@ -28,13 +28,7 @@ def checkout(skus):
 def calculate_cost(sku_counts):
     total_cost = 0
 
-    if 'E' in sku_counts and 'B' in sku_counts:
-        free_count = sku_counts['E'] // 2
-        sku_counts['B'] = max(sku_counts['B'] - free_count, 0)
-
-    if 'F' in sku_counts:
-        free_count = sku_counts['F'] // 2
-        sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
+    sku_counts = handle_free_items(sku_counts)
 
     for sku, count in sku_counts.items():
         if sku in offers:
@@ -57,6 +51,17 @@ def calculate_cost(sku_counts):
             total_cost += count * items[sku]
 
     return total_cost
+
+def handle_free_items(sku_counts):
+    if 'E' in sku_counts and 'B' in sku_counts:
+        free_count = sku_counts['E'] // 2
+        sku_counts['B'] = max(sku_counts['B'] - free_count, 0)
+
+    if 'F' in sku_counts:
+        free_count = sku_counts['F'] // 2
+        sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
+
+    return sku_counts
 
 print(checkout('FFF'))
 
