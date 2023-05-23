@@ -33,7 +33,7 @@ def calculate_cost(item, count, skus):
     total_cost = 0
 
     if item in offers.keys():
-        for offer in offers[item]:
+        for offer in sorted(offers[item], key= lambda x: x['count'], reverse=True):
             while count >= offer['count']:
                 total_cost += offer['price']
                 count -= offer['count']
@@ -45,3 +45,4 @@ def calculate_cost(item, count, skus):
     total_cost += count * items[item]
     
     return total_cost, skus
+
