@@ -45,4 +45,4 @@ def calculate_cost(item, count, skus):
                     total_cost -= eligible_offers * items[free_item]
     return total_cost, skus
 
-print(checkout('EEEEB'))
+print(checkout('EEEEBB'))
