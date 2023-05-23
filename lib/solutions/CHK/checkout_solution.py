@@ -32,7 +32,7 @@ def calculate_cost(item, count, skus):
     total_cost = 0
 
     if item in offers.keys():
-        for offer in offers.keys():
+        for offer in offers[item]:
             if 'free' in offer and count >= offer['count']:
                 count_free_item = items.count(offer['free'])
                 if count_free_item > 0:
@@ -46,5 +46,3 @@ def calculate_cost(item, count, skus):
         total_cost += count * items[item]
     
     return total_cost
-    
-print(checkout("A"))
