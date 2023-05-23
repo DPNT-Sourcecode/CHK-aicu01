@@ -21,14 +21,29 @@ def checkout(skus):
 
     for item in items.keys():
         count = skus.count(item)
-        if item in offers.keys() and count >= offers[item]['count']:
-            offer = offers[item]
-            total_cost += (count // offer['count']) * offer['price']
-            count %= offer['count']
+        total_cost = calculate_cost(item, count, skus)
+
+
+    
+    
+def calculate_cost(item, count, skus):
+    total_cost = 0
+
+    if item in offers.keys():
+        for offer in offers.keys():
+            if 'free' in offer and count >= offer['count']:
+                count_free_item = items.count(offer['free'])
+                if count_free_item > 0:
+                    skus = skus.replace(offer['free'], '', 1)
+                    count -= offer['count']
+            
+            while count >= offer['count']:
+                total_cost += offer['price']
+                count -= offer['count']
+
         total_cost += count * items[item]
     
     return total_cost
     
 
-    
 
