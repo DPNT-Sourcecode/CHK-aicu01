@@ -1,10 +1,11 @@
 
 
-items = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40}
+items = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10}
 offers = {
     'A': [{'count': 3, 'price': 130}, {'count': 5, 'price': 200}],
     'B': [{'count': 2, 'price': 45}],
-    'E': [{'count': 2, 'price': 80, 'free': 'B'}],    
+    'E': [{'count': 2, 'free': 'B'}],
+    'F': [{'count': 2, 'free': 'F'}],
 }
 
 
@@ -55,3 +56,4 @@ def calculate_cost(sku_counts):
 
     
     return total_cost
+
