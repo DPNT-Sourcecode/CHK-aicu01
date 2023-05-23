@@ -21,6 +21,9 @@ def checkout(skus):
 
     for item in items.keys():
         count = skus.count(item)
+        if item == 'E' and 'B' in skus:
+            skus.replace('B', '', count // 2)
+        print(skus)
         cost, skus = calculate_cost(item, count, skus)
         total_cost += cost
 
@@ -41,13 +44,12 @@ def calculate_cost(item, count, skus):
                     count_free_item = skus.count(offer['free'])
                     if count_free_item > 0:
                         skus = skus.replace(offer['free'], '', 1)
-    if not any(offer.get('free') == item for offer in offers.values() for offer in offer):
-        total_cost += count * items[item]
 
     total_cost += count * items[item]
     
     return total_cost, skus
 
 print(checkout('EEB'))
+
 
 
