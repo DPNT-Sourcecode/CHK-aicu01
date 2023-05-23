@@ -17,32 +17,40 @@ def checkout(skus):
     if not skus:
         return 0
 
+    sku_counts = {sku: skus.count(sku) for sku in set(skus)}
+
+    return calculate_cost(sku_counts)
+
+
+    
+    
+def calculate_cost(sku_counts):
     total_cost = 0
 
-    for item in items.keys():
-        count = skus.count(item)
-        cost, skus = calculate_cost(item, count, skus)
-        total_cost += cost
+    for sku, count in sku_counts.items():
+        if sku in offers:
+            sku_price = items[sku]
+            while count > 0:
+                offer_applied = False
+                for offer in offers[sku]:
+                    offer_count = offer['count']
+                    offer_price = offer['price']
+                    if count >= offer_count:
+                        total_cost += offer_price
+                        count -= offer_count
+                        offer_applied = True
+                        break
+                if not offer_applied:
+                    total_cost += count * sku_price
+                    count = 0
+        else:
+            total_cost += count * items[sku]
 
+    if 'E' in sku_counts and 'B' in sku_counts:
+        free_count = min(sku_counts['E'], sku_counts['B'])
+        total_cost -= free_count * items['B']
+
+    
     return total_cost
 
-
-    
-    
-def calculate_cost(item, count, skus):
-    total_cost = 0
-
-    if item in offers:
-        for offer in sorted(offers[item], key=lambda x: x['count'], reverse=True):
-            while count >= offer['count']:
-                total_cost += offer['price']
-                count -= offer['count']
-
-                if 'free' in offer and offer['free'] in items:
-                    free_item = offer['free']
-                    free_item_count = skus.count(free_item)
-                    eligible_offers = min(count // offer['count'], free_item_count)
-                    total_cost -= eligible_offers * items[free_item]
-    return total_cost, skus
-
-print(checkout('EEEEBB'))
+print(checkout('ABCD'))
