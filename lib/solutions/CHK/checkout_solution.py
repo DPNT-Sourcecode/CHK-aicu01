@@ -4,7 +4,7 @@ items = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40}
 offers = {
     'A': [{'count': 3, 'price': 130}, {'count': 5, 'price': 200}],
     'B': [{'count': 2, 'price': 45}],
-    'E': [{'count': 2, 'free': 'B'}],    
+    'E': [{'count': 2, 'price': 80, 'free': 'B'}],    
 }
 
 
@@ -34,15 +34,13 @@ def calculate_cost(item, count, skus):
 
     if item in offers.keys():
         for offer in offers[item]:
-            if 'free' in offer and count >= offer['count']:
-                count_free_item = items.count(offer['free'])
-                if count_free_item > 0:
-                    skus = skus.replace(offer['free'], '', 1)
-                    count -= offer['count']
-            
             while count >= offer['count']:
                 total_cost += offer['price']
                 count -= offer['count']
+                if 'free' in offer:
+                    count_free_item = items.count(offer['free'])
+                    if count_free_item > 0:
+                        skus = skus.replace(offer['free'], '', 1)
 
     total_cost += count * items[item]
     
@@ -50,3 +48,4 @@ def calculate_cost(item, count, skus):
 
 
 print(checkout("EBE"))
+
