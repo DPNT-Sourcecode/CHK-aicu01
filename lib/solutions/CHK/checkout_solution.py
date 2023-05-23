@@ -41,8 +41,12 @@ def calculate_cost(item, count, skus):
                     count_free_item = skus.count(offer['free'])
                     if count_free_item > 0:
                         skus = skus.replace(offer['free'], '', 1)
+    if not any(offer.get('free') == item for o in offers.values() for offer in o):
+        total_cost += count * items[item]
 
     total_cost += count * items[item]
     
     return total_cost, skus
+
+print(checkout('EEB'))
 
