@@ -63,5 +63,5 @@ def handle_free_items(sku_counts):
 
     return sku_counts
 
-print(checkout('FFF'))
+print(checkout('EEEEBB'))
 
