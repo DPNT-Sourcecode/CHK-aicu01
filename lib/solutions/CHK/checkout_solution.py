@@ -55,5 +55,3 @@ def calculate_cost(sku_counts):
 
     
     return total_cost
-
-print(checkout('EEEEBBB'))
