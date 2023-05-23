@@ -45,12 +45,12 @@ def calculate_cost(item, count, skus):
                             count -= 1
 
 
-    if not any(offer.get('free') == item for offer in offers.values() for offer in offer):
-        total_cost += count * items[item]
+    """ if not any(offer.get('free') == item for offer in offers.values() for offer in offer):"""
+    total_cost += count * items[item] 
     
     return total_cost, skus
 
-print(checkout('ABCDE'))
+print(checkout('EEB'))
 
 
 
