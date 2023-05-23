@@ -17,7 +17,7 @@ def checkout(skus):
         count = skus.count(item)
         if item in offers.keys() and count >= offers[item]['count']:
             offer = offers[item]
-            total_costs += (count // offer['count']) * offer['price']
+            total_cost += (count // offer['count']) * offer['price']
             count %= offer['count']
         total_cost += count * items[item]
     
@@ -25,6 +25,7 @@ def checkout(skus):
     
 
     
+
 
 
 
