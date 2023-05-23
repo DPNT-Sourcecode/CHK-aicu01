@@ -47,3 +47,4 @@ def calculate_cost(item, count, skus):
     
     return total_cost
     
+print(checkout("A"))
