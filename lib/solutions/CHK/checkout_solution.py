@@ -21,7 +21,7 @@ def checkout(skus):
 
     for item in items.keys():
         count = skus.count(item)
-        cost, items = calculate_cost(item, count, skus)
+        cost, skus = calculate_cost(item, count, skus)
         total_cost += cost
 
     return total_cost
@@ -44,6 +44,9 @@ def calculate_cost(item, count, skus):
                 total_cost += offer['price']
                 count -= offer['count']
 
-        total_cost += count * items[item]
+    total_cost += count * items[item]
     
     return total_cost, skus
+
+
+print(checkout("C"))
