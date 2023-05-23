@@ -8,8 +8,21 @@ offers = {'A': {'count': 3, 'price': 130},
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    if skus not in items.keys():
+    if not set(skus).issubset(items.keys()):
         return -1
+    
+    total_cost = 0
+
+    for item in items.keys():
+        count = items.count(item)
+        if item in offers.keys() and count >= offers[item]['count']
+            offer = offers[item]
+            total_costs += (count // offer['count']) * offer['price']
+            count %= offer['count']
+        total_cost += count * items[item]
+    
+    return total_cost
     
 
     
+
