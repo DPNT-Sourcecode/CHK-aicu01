@@ -32,7 +32,7 @@ def checkout(skus):
 def calculate_cost(item, count, skus):
     total_cost = 0
 
-    if item in offers.keys():
+    if item in offers:
         for offer in sorted(offers[item], key= lambda x: x['count'], reverse=True):
             while count >= offer['count']:
                 total_cost += offer['price']
@@ -41,12 +41,17 @@ def calculate_cost(item, count, skus):
                     count_free_item = skus.count(offer['free'])
                     if count_free_item > 0:
                         skus = skus.replace(offer['free'], '', 1)
+                        if offer['free'] == item:
+                            count -= 1
 
-    total_cost += count * items[item]
+
+    if not any(offer.get('free') == item for offer in offers.values() for offer in offer)
+        total_cost += count * items[item]
     
     return total_cost, skus
 
 print(checkout('EEB'))
+
 
 
 
