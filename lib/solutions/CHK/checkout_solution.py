@@ -21,9 +21,6 @@ def checkout(skus):
 
     for item in items.keys():
         count = skus.count(item)
-        if item == 'E' and 'B' in skus:
-            skus.replace('B', '', count // 2)
-        print(skus)
         cost, skus = calculate_cost(item, count, skus)
         total_cost += cost
 
@@ -50,6 +47,7 @@ def calculate_cost(item, count, skus):
     return total_cost, skus
 
 print(checkout('EEB'))
+
 
 
 
