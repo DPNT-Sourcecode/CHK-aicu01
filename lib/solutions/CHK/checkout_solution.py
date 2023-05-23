@@ -51,8 +51,3 @@ def calculate_cost(item, count, skus):
     return total_cost, skus
 
 print(checkout('EEB'))
-
-
-
-
-
