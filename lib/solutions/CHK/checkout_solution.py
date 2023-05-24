@@ -7,6 +7,7 @@ items = {
     'S': 30, 'T': 20, 'U': 40, 'V': 50, 'W': 20, 'X': 90,
     'Y': 10, 'Z': 50
 }
+
 offers = {
     'A': [{'count': 3, 'price': 130}, {'count': 5, 'price': 200}],
     'B': [{'count': 2, 'price': 45}],
@@ -20,6 +21,10 @@ offers = {
     'R': [{'count': 3, 'price': 150, 'free': 'Q'}],
     'U': [{'count': 3, 'price': 120, 'free': 'U'}],
     'V': [{'count': 2, 'price': 90}, {'count': 3, 'price': 130}],
+}
+
+group_discounts = {
+    'STXYZ': ['count': 3, 'price': 45]
 }
 
 free_items_offer = ['E', 'F', 'N', 'R', 'U']
