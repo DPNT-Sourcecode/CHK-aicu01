@@ -6,7 +6,7 @@ items = {
     'M': 15, 'N': 40, 'O': 10, 'P': 50, 'Q': 30, 'R': 50,
     'S': 20, 'T': 20, 'U': 40, 'V': 50, 'W': 20, 'X': 17,
     'Y': 20, 'Z': 21
-}
+} #cc xyz xyz
 
 offers = {
     'A': [{'count': 3, 'price': 130}, {'count': 5, 'price': 200}],
@@ -114,7 +114,7 @@ def group_discount_cost(sku_counts):
     for sku in eligible_skus:
         sku_counts[sku] -= 1
     print(eligible_skus)
-    
+    print(total_cost, sku_counts)
     return total_cost, sku_counts
 
 print(checkout('CXYZYZC'))
