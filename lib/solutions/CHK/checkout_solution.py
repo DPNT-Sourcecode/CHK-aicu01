@@ -89,6 +89,7 @@ def group_discount_cost(sku_counts):
     for group, discounts in group_discounts.items():
         total_count = sum(sku_counts.get(sku, 0) for sku in group)
         discounts.sort(key=lambda x: x['count'], reverse=True)
+        print(total_count)
 
         for discount in discounts:
             while total_count >= discount['count']:
@@ -102,4 +103,5 @@ print(checkout('T'))
 print(checkout('FFFF'))
 print(checkout('FFFFF'))
 print(checkout('FFFFFF'))
+
 
