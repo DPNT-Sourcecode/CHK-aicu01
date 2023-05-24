@@ -56,8 +56,9 @@ def handle_free_items(sku_counts):
     for sku, count in sku_counts.items():
         if sku in offers and 'free' in offers[sku]:
             free_sku = offers[sku]['free']
-            if free_sku in sku_counts:
-                free_count = min(count, sku_counts[free_sku])
+            if free_sku in sku_counts and sku_counts[free_sku] > 0:
+                free_count = count // 2
+                free_count = min(free_count, sku_counts[free_sku])
                 sku_counts[free_sku] -= free_count
                 sku_counts[sku] -= free_count
     
