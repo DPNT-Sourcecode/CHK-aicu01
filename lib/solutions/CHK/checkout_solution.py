@@ -85,6 +85,7 @@ def handle_free_items(sku_counts):
     return sku_counts
 
 def group_discount_cost(sku_counts):
+    print(sku_counts)
     total_cost = 0
     for group, discounts in group_discounts.items():
         total_count = sum(sku_counts.get(sku, 0) for sku in group)
@@ -106,6 +107,7 @@ def group_discount_cost(sku_counts):
                 del sku_counts[sku]
 
     print(total_cost, 'test')
+    print(sku_counts)
     return total_cost, sku_counts
 
 print(checkout('TTXT'))
