@@ -116,7 +116,3 @@ def group_discount_cost(sku_counts):
         sku_counts[sku] -= 1
 
     return total_cost, sku_counts
-
-
-
-
