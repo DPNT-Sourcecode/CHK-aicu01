@@ -88,6 +88,7 @@ def group_discount_cost(sku_counts):
     total_cost = 0
     
     eligible_skus = []
+    discounted_skus = []
     for group, discounts in group_discounts.items():
         group_counts = {sku: sku_counts.get(sku, 0) for sku in group}
         total_count = sum(group_counts.values())
@@ -105,12 +106,15 @@ def group_discount_cost(sku_counts):
                 for _ in range(discount['count']):
                     max_price_sku = max(group_counts, key=lambda sku: (items[sku] if group_counts[sku] > 0 else -1))
                     group_counts[max_price_sku] -= 1
-                    print(max_price_sku)
+                    discounted_skus.append(max_price_sku)
                 
         if total_count > 0:
             sku_price_pairs = ((sku, items[sku]) for sku in group if sku in sku_counts and sku_counts[sku] > 0)
             print(total_count)
-        
+            remaining_skus = [sku for sku in eligible_skus if sku not in discounted_skus or discounted_skus.remove(sku)]
+            print(remaining_skus)
+            for sku in remaining_skus:
+                total_cost += items[sku]
             min_sku, min_price = min(sku_price_pairs, key=lambda x: x[1])
             print(min_sku, min_price)
             total_cost += total_count * min_price
@@ -123,5 +127,6 @@ def group_discount_cost(sku_counts):
     return total_cost, sku_counts
 
 print(checkout('CXYZYZC'))
+
 
 
