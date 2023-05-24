@@ -14,7 +14,7 @@ offers = {
     'E': [{'count': 2, 'price': 80, 'free': 'B'}],
     'F': [{'count': 2, 'price': 20, 'free': 'F'}],
     'H': [{'count': 5, 'price': 45}, {'count': 10, 'price': 80}],
-    'K': [{'count': 2, 'price': 150}],
+    'K': [{'count': 2, 'price': 120}],
     'N': [{'count': 3, 'price': 120, 'free': 'M'}],
     'P': [{'count': 5, 'price': 200}],
     'Q': [{'count': 3, 'price': 80}],
@@ -114,7 +114,3 @@ def group_discount_cost(sku_counts):
         sku_counts[sku] -= 1
     
     return total_cost, sku_counts
-
-
-
-
