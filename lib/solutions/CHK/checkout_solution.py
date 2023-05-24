@@ -103,7 +103,7 @@ def group_discount_cost(sku_counts):
     print(total_cost, 'test')
     return total_cost
 
-print(checkout('TTTTTTAB'))
+print(checkout('TTTTT'))
 print(checkout('FFFF'))
 print(checkout('FFFFF'))
 print(checkout('FFFFFF'))
