@@ -53,15 +53,14 @@ def calculate_cost(sku_counts):
     return total_cost
 
 def handle_free_items(sku_counts):
-    for sku, count in sku_counts.items():
-        if sku in offers and 'free' in offers[sku]:
-            free_sku = offers[sku]['free']
-            if free_sku in sku_counts and sku_counts[free_sku] > 0:
-                free_count = count // 2
-                free_count = min(free_count, sku_counts[free_sku])
-                sku_counts[free_sku] -= free_count
-                sku_counts[sku] -= free_count
-    
+    if 'E' in sku_counts and 'B' in sku_counts:
+        free_count = sku_counts['E'] // 2
+        sku_counts['B'] = max(sku_counts['B'] - free_count, 0)
+
+    if 'F' in sku_counts:
+        free_count = sku_counts['F'] // 3
+        sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
+
     return sku_counts
 
-print(checkout('EEEEBB'))
+print(checkout('FFFFF'))
