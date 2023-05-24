@@ -94,11 +94,11 @@ def group_discount_cost(sku_counts):
             while total_count >= discount['count']:
                 total_cost += discount['price']
                 total_count -= discount['count']
-        total_cost += total_count * min(items[sku] for sku in group if sku in sku_counts)
+        total_cost += total_count * min(items[sku] for sku in group if sku in sku_counts and sku_counts[sku] > 0) if total_count > 0 else 0
     
     return total_cost
 
-print(checkout('FFF'))
+print(checkout('TTTT'))
 print(checkout('FFFF'))
 print(checkout('FFFFF'))
 print(checkout('FFFFFF'))
