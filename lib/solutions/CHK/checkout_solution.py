@@ -62,5 +62,3 @@ def handle_free_items(sku_counts):
         sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
 
     return sku_counts
-
-print(checkout('FFFFF'))
