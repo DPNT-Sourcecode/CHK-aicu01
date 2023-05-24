@@ -18,7 +18,7 @@ offers = {
     'P': [{'count': 5, 'price': 200}],
     'Q': [{'count': 3, 'price': 80}],
     'R': [{'count': 3, 'price': 150, 'free': 'Q'}],
-    'U': [{'count': 3, 'price': 80, 'free': 'U'}],
+    'U': [{'count': 3, 'price': 120, 'free': 'U'}],
     'V': [{'count': 2, 'price': 90}, {'count': 3, 'price': 130}],
 }
 
@@ -76,5 +76,6 @@ def handle_free_items(sku_counts):
                         sku_counts[free_item] = max(sku_counts[free_item] - free_count, 0)
 
     return sku_counts
+
 
 
