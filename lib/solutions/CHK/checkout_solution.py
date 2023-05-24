@@ -22,6 +22,7 @@ offers = {
     'V': [{'count': 2, 'price': 90}, {'count': 3, 'price': 130}],
 }
 
+free_items_offer = ['E', 'F', 'N', 'R', 'U']
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -76,4 +77,5 @@ def handle_free_items(sku_counts):
         sku_counts['F'] = max(sku_counts['F'] - free_count, 0)
 
     return sku_counts
+
 
