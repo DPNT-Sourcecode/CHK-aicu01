@@ -6,7 +6,7 @@ items = {
     'M': 15, 'N': 40, 'O': 10, 'P': 50, 'Q': 30, 'R': 50,
     'S': 20, 'T': 20, 'U': 40, 'V': 50, 'W': 20, 'X': 17,
     'Y': 20, 'Z': 21
-} #cc xyz xyz
+} #cc xyzyz
 
 offers = {
     'A': [{'count': 3, 'price': 130}, {'count': 5, 'price': 200}],
@@ -100,6 +100,7 @@ def group_discount_cost(sku_counts):
             while total_count >= discount['count']:
                 total_cost += discount['price']
                 total_count -= discount['count']
+                print(total_cost, 'e')
 
                 for _ in range(discount['count']):
                     max_price_sku = max(group_counts, key=lambda sku: (items[sku] if group_counts[sku] > 0 else -1))
@@ -108,6 +109,8 @@ def group_discount_cost(sku_counts):
                 
         if total_count > 0:
             sku_price_pairs = ((sku, items[sku]) for sku in group if sku in sku_counts and sku_counts[sku] > 0)
+            print(total_count)
+            print(sku_price_pairs)
             min_sku, min_price = min(sku_price_pairs, key=lambda x: x[1])
             total_cost += total_count * min_price
             print(total_cost)
@@ -119,3 +122,4 @@ def group_discount_cost(sku_counts):
     return total_cost, sku_counts
 
 print(checkout('CXYZYZC'))
+
