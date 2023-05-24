@@ -47,7 +47,7 @@ def calculate_cost(sku_counts):
 
     sku_counts = handle_free_items(sku_counts)
 
-    total_cost, sku_counts = group_discount_cost(sku_counts)
+    total_cost = group_discount_cost(sku_counts)
 
     for sku, count in sku_counts.items():
         if sku in offers:
@@ -85,7 +85,6 @@ def handle_free_items(sku_counts):
     return sku_counts
 
 def group_discount_cost(sku_counts):
-    print(sku_counts)
     total_cost = 0
     for group, discounts in group_discounts.items():
         total_count = sum(sku_counts.get(sku, 0) for sku in group)
@@ -96,21 +95,12 @@ def group_discount_cost(sku_counts):
             while total_count >= discount['count']:
                 total_cost += discount['price']
                 total_count -= discount['count']
-
-                for sku in sorted(group, key=lambda x: items[x], reverse=True):
-                    while sku_counts.get(sku, 0) > 0 and total_count > 0:
-                        sku_counts[sku] -= 1
-                        total_count -= 1
-        for sku in group:
-            if sku in sku_counts:
-                total_cost += sku_counts[sku] * items[sku]
-                del sku_counts[sku]
-
+        total_cost += total_count * min(items[sku] for sku in group if sku in sku_counts and sku_counts[sku] > 0) if total_count > 0 else 0
+        print(sku_counts)
     print(total_cost, 'test')
-    print(sku_counts)
-    return total_cost, sku_counts
+    return total_cost
 
-print(checkout('TTXT'))
+print(checkout('TTTTTTAB'))
 print(checkout('FFFF'))
 print(checkout('FFFFF'))
 print(checkout('FFFFFF'))
