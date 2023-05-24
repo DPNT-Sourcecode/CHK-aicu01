@@ -110,6 +110,7 @@ def group_discount_cost(sku_counts):
             sku_price_pairs = ((sku, items[sku]) for sku in group if sku in sku_counts and sku_counts[sku] > 0)
             min_sku, min_price = min(sku_price_pairs, key=lambda x: x[1])
             total_cost += total_count * min_price
+            print(total_cost)
 
     for sku in eligible_skus:
         sku_counts[sku] -= 1
